@@ -1,0 +1,16 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Data files (large files)
+data/
+data_processed/
+cache/
+
+# OS
+.DS_Store
+*.log
