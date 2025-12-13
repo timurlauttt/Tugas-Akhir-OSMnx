@@ -9,7 +9,7 @@ ox.settings.use_cache = True
 area = "Kabupaten Cilacap, Jawa Tengah, Indonesia"
 
 # Ambil jaringan jalan
-road = ox.graph_from_place(area, network_type="all")
+road = ox.graph_from_place(area, network_type="drive")
 
 os.makedirs("data_processed", exist_ok=True)
 ox.save_graphml(road, "data_processed/road.graphml")

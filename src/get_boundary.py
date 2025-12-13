@@ -14,7 +14,7 @@ boundary.to_file("data_processed/boundary.geojson", driver="GeoJSON")
 
 print(boundary)
 
-# Plot dengan warna konsisten (hitam untuk boundary)
+# Plot 
 fig, ax = plt.subplots(figsize=(10, 8))
 boundary.plot(ax=ax, facecolor="none", edgecolor="#000000", linewidth=2)
 
@@ -24,7 +24,7 @@ legend_handles = [
 ]
 ax.legend(handles=legend_handles, loc="lower left", frameon=True, fontsize=10)
 
-# North arrow (petunjuk arah mata angin)
+# North arrow
 nx, ny = 0.95, 0.15
 ax.annotate('', xy=(nx, ny + 0.12), xytext=(nx, ny),
             xycoords='axes fraction',
