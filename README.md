@@ -1,6 +1,8 @@
-# Tugas Akhir - OSMnx Mapping Project
+# Tugas Akhir - Klasifikasi Risiko Banjir Menggunakan Metode Random Forest dan Implementasinya dalam Web GISt Mapping Project
 
 Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial boundary, jalan, bangunan, titik rawan banjir, dan titik evakuasi.
+
+Project Objective: melakukan klasifikasi risiko banjir per kecamatan menggunakan metode Random Forest dengan menggabungkan titik rawan banjir dari BPBD dan data cuaca/curah hujan harian dari API BMKG. Sistem akhir akan menyediakan model terlatih, REST API (FastAPI) untuk penyajian prediksi real-time, dan Web GIS (Leaflet) untuk visualisasi hasil.
 
 ---
 
@@ -100,6 +102,33 @@ Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial bound
 - [ ] Export ke Folium HTML map (interaktif)
 - [ ] Web dashboard dengan Streamlit/Dash
 
+### Modelling & BMKG Integration
+
+- Tujuan akhir: model klasifikasi risiko banjir per kecamatan (Risiko Rendah / Sedang / Tinggi) menggunakan Random Forest.
+- Sumber data tambahan: API BMKG (prakiraan cuaca/parameter `t`, `hu`, `ws`, `tcc`, `weather_desc`, dll.) untuk fitur cuaca/curah hujan harian.
+- Pipeline: data BPBD (titik rawan) → agregasi ke kecamatan → gabungkan ringkasan BMKG per kecamatan → feature engineering → training Random Forest → evaluasi (fokus recall kelas Tinggi) → simpan model (.pkl) → deploy via FastAPI.
+
+### Deployment & Public Access
+
+Setelah model terlatih dan divalidasi, sistem direncanakan untuk dideploy sebagai sebuah Website Web GIS yang dapat diakses oleh masyarakat umum. Fitur deployment singkat:
+
+- Penyajian API: model dimuat oleh aplikasi backend berbasis `FastAPI` yang menyediakan endpoint prediksi (`/predict`) dan endpoint data spasial (`/kecamatan`, `/layers`).
+- Web GIS frontend: aplikasi peta interaktif menggunakan `LeafletJS` yang menampilkan peta kecamatan, layer risiko (hijau–kuning–merah), tooltip informasi, dan kontrol layer.
+- Infrastruktur deployment: containerisasi dengan `Docker` + `docker-compose`, reverse proxy `Nginx`, dan hosting pada VPS (DigitalOcean/Niagahoster) atau layanan cloud lain. Database produksi direkomendasikan `PostgreSQL + PostGIS` untuk menyimpan geometri dan atribut risiko.
+- Keamanan & sumber data: tampilan publik harus menyertakan atribusi BMKG dan BPBD; akses admin untuk memperbarui model/data akan dilindungi (auth sederhana atau VPN).
+
+Contoh deployment steps (ringkas):
+
+```bash
+# build api docker image
+docker build -t cilacap-flood-api ./cilacap-api
+
+# run db + api + nginx
+docker-compose up -d
+```
+
+Catatan: untuk keperluan sidang, sediakan demo lokal (docker-compose) dan dokumentasi langkah deploy; untuk akses publik siapkan domain, TLS (Let's Encrypt), dan konfigurasi firewall minimal.
+
 #### 10. Quality Assurance
 - [x] Validasi data koordinat (invalid rows tersimpan di CSV terpisah)
 - [x] CRS consistency check (EPSG:4326)
@@ -194,6 +223,27 @@ python src/visualize_evac.py
 python src/visualize_layer.py
 ```
 
+### Modelling (baseline) - contoh langkah cepat
+
+1. Siapkan virtual environment dan install dependency tambahan:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install scikit-learn joblib geopandas pandas shapely
+```
+
+2. Struktur skrip modeling (di `src/modeling/`) yang bisa dijalankan:
+
+```bash
+python src/modeling/01_spatial_join.py        # join titik rawan -> kecamatan
+python src/modeling/02_feature_engineering.py # hitung count, density, area
+python src/modeling/04_train_rf.py           # train RandomForest, simpan models/flood_risk_rf.pkl
+python src/modeling/05_evaluate.py           # buat confusion matrix & metrics
+```
+
+Catatan: BMKG API dipakai pada fase produksi (FastAPI) untuk input real-time; untuk training disarankan menggunakan data historis curah hujan (BMKG/dataonline atau dataset cuaca historis). Jika historis tidak tersedia, gunakan ringkasan prakiraan yang representatif dan dokumentasikan keterbatasannya.
+
 ##  Data Sources & Statistics
 
 ### Input Data
@@ -259,4 +309,4 @@ This project is for academic purposes (Tugas Akhir).
 
 ---
 
-*Last Updated: December 1, 2025*
+*Last Updated: December 28, 2025*
