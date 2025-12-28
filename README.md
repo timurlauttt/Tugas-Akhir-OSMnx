@@ -4,9 +4,9 @@ Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial bound
 
 ---
 
-## 📋 Progress Tracking
+##  Progress Tracking
 
-### ✅ Completed Tasks
+###  Completed Tasks
 
 #### 1. Setup Project Structure
 - [x] Inisialisasi repository Git
@@ -81,7 +81,7 @@ Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial bound
 
 ---
 
-### 📝 Todo / Planned Tasks
+###  Todo / Planned Tasks
 
 #### 8. Spatial Analysis (Optional Enhancement)
 
@@ -113,21 +113,21 @@ Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial bound
 
 ---
 
-## 🗂️ File Structure
+##  File Structure
 
 ```
 OSMnx/
 ├── src/
-│   ├── get_boundary.py          # ✅ Ambil boundary Cilacap
-│   ├── get_building.py          # ✅ Ambil data bangunan
-│   ├── get_road.py              # ✅ Ambil jaringan jalan
-│   ├── get_floodpoint.py        # ✅ Convert XLSX → GeoJSON (flood points)
-│   ├── get_evac_point.py        # ✅ Convert CSV → GeoJSON (evac points)
-│   ├── visualize_boundary.py    # ✅ Visualisasi boundary
-│   ├── visualize_building.py    # ✅ Visualisasi buildings
-│   ├── visualize_road.py        # ✅ Visualisasi roads
-│   ├── visualize_flood.py       # ✅ Visualisasi flood-risk points
-│   ├── visualize_evac.py        # ✅ Visualisasi evacuation points
+│   ├── get_boundary.py          #  Ambil boundary Cilacap
+│   ├── get_building.py          #  Ambil data bangunan
+│   ├── get_road.py              #  Ambil jaringan jalan
+│   ├── get_floodpoint.py        #  Convert XLSX → GeoJSON (flood points)
+│   ├── get_evac_point.py        #  Convert CSV → GeoJSON (evac points)
+│   ├── visualize_boundary.py    #  Visualisasi boundary
+│   ├── visualize_building.py    #  Visualisasi buildings
+│   ├── visualize_road.py        #  Visualisasi roads
+│   ├── visualize_flood.py       #  Visualisasi flood-risk points
+│   ├── visualize_evac.py        #  Visualisasi evacuation points
 ├── data_processed/               # Output GeoJSON/GraphML (ignored by git)
 │   ├── boundary.geojson                                      # 1 polygon
 │   ├── building.geojson                                      # ~953K features
@@ -140,9 +140,9 @@ OSMnx/
 │   ├── boundary.geojson
 │   ├── building.geojson
 │   ├── road.graphml
-│   ├── tempatevakuasinew.geojson                  # ✅ 320 features
-│   └── Data_Desa_Rawan_Banjir_di_Cilacap.geojson # ✅ 127 features
-## 🎨 Color Scheme (Colorblind-Friendly)
+│   ├── tempatevakuasinew.geojson                  #  320 features
+│   └── Data_Desa_Rawan_Banjir_di_Cilacap.geojson # 127 features
+##  Color Scheme (Colorblind-Friendly)
 
 | Layer | Color | Hex Code | Marker | Description |
 |-------|-------|----------|--------|-------------|
@@ -163,7 +163,7 @@ OSMnx/
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Prerequisites
 ```bash
@@ -194,7 +194,7 @@ python src/visualize_evac.py
 python src/visualize_layer.py
 ```
 
-## 📊 Data Sources & Statistics
+##  Data Sources & Statistics
 
 ### Input Data
 - **Boundary, Roads, Buildings**: OpenStreetMap (via OSMnx API)
@@ -202,7 +202,7 @@ python src/visualize_layer.py
   - Total: 130 rows → 127 valid features (3 invalid)
 - **Evacuation Points**: `tempatevakuasinew.csv`
   - Total: 321 rows → 320 valid features (1 invalid)
-## 📌 Technical Notes
+##  Technical Notes
 
 ### Data Processing
 - **CRS**: EPSG:4326 (WGS84) untuk semua layer
@@ -215,13 +215,13 @@ python src/visualize_layer.py
 - **Layer Order (zorder)**:
   1. Roads (zorder=2)
   2. Buildings (zorder=3)
-## 🔗 Repository
+##  Repository
 
 **GitHub**: [timurlauttt/Tugas-Akhir-OSMnx](https://github.com/timurlauttt/Tugas-Akhir-OSMnx)
 
 ---
 
-## 📄 License
+##  License
 
 This project is for academic purposes (Tugas Akhir).
 
@@ -242,7 +242,7 @@ This project is for academic purposes (Tugas Akhir).
 
 ---
 
-## 📌 Notes
+##  Notes
 
 - Folder `data_processed/`, `cache/`, dan `data/` tidak di-track oleh Git (file terlalu besar)
 - CRS: EPSG:4326 (WGS84) untuk semua layer
@@ -253,7 +253,7 @@ This project is for academic purposes (Tugas Akhir).
 
 ---
 
-## 🔗 Repository
+##  Repository
 
 **GitHub**: [timurlauttt/Tugas-Akhir-OSMnx](https://github.com/timurlauttt/Tugas-Akhir-OSMnx)
 
