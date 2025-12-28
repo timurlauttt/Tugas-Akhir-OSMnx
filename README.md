@@ -1,4 +1,4 @@
-# Tugas Akhir - Klasifikasi Risiko Banjir Menggunakan Metode Random Forest dan Implementasinya dalam Web GISt Mapping Project
+# Tugas Akhir - Klasifikasi Risiko Banjir Menggunakan Metode Random Forest dan Implementasinya dalam Web GIS
 
 Proyek pemetaan Kabupaten Cilacap menggunakan OSMnx untuk analisis spasial boundary, jalan, bangunan, titik rawan banjir, dan titik evakuasi.
 
